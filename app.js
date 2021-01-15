@@ -1,4 +1,4 @@
-
+$(document).ready(function () {
 // JS
     //******** JS FETCH ***********//
     const output1 = document.querySelector('.output1');
@@ -7,19 +7,20 @@
 
     //******** LOADING DISPLAY ***********//
     let loader = `<div class="boxLoading text-center">LOADING...</div>`;
-    //document.getElementById('movieResult').innerHTML = loader;
+    document.getElementById('movieResult').innerHTML = loader;
     var data = fetchData()
+
     //while fetchData === undefined, loading= true, loading=false
 
     function fetchData(data) {
-    fetch(url).then(function (rep) {
-        return rep.json()
-    }).then(function (data) {
-        let result = `<h2> APP</h2>`;
-        console.log(data);
-        data.forEach(function (movie) {
-            result +=
-                `<div>
+        fetch(url).then(function (rep) {
+            return rep.json()
+        }).then(function (data) {
+            let result = `<h2> APP</h2>`;
+            console.log(data);
+            data.forEach(function (movie) {
+                result +=
+                    `<div>
                     <h5> Movie ID: ${movie.id} </h5>
                     <ul>
                         <li>Movie name: ${movie.title}</li>
@@ -28,12 +29,12 @@
                          <button>Edit</button>
                     </ul>
                 </div>`;
-            console.log(movie.title);
+                console.log(movie.title);
+            });
+            result += ``
+            document.getElementById('movieResult').innerHTML = result;
         });
-        result += ``
-        document.getElementById('movieResult').innerHTML = result;
-    });
-}
+    }
 
 
     //******** ADD TO MOVIE LIST ***********//
@@ -47,21 +48,21 @@
 
     // add to movies function
     function adder() {
-    fetch('https://shorthaired-alluring-hope.glitch.me/movies', {
-        method: 'POST'
-        , body: JSON.stringify({
-            title: title.value
-            , rating: n.value
+        fetch('https://shorthaired-alluring-hope.glitch.me/movies', {
+            method: 'POST'
+            , body: JSON.stringify({
+                title: title.value
+                , rating: n.value
+            })
+            , headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (res) {
+            return res.text();
+        }).then(function (data) {
+            console.log(data);
         })
-        , headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (res) {
-        return res.text();
-    }).then(function (data) {
-        console.log(data);
-    })
-}
+    }
 
     //******** DELETE MOVIE ***********//
     //     function remove() {
@@ -98,8 +99,8 @@
     }
 
     function updateData(title, rating) {
-    console.log(title, rating);
-}
-
+        console.log(title, rating);
+    }
+});
 
 
