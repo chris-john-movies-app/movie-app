@@ -1,16 +1,20 @@
 $(document).ready(function () {
-// JS
     //******** JS FETCH ***********//
     const output1 = document.querySelector('.output1');
     const output2 = document.querySelector('.output2');
     const url = 'https://shorthaired-alluring-hope.glitch.me/movies';
 
     //******** LOADING DISPLAY ***********//
-    let loader = `<div class="boxLoading text-center">LOADING...</div>`;
+    let loader = `<div class="boxLoading text-center">Loading...</div>`;
     document.getElementById('movieResult').innerHTML = loader;
-    var data = fetchData()
+    let data = fetchData()
 
     //while fetchData === undefined, loading= true, loading=false
+
+    function capString(word)
+    {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
 
     function fetchData(data) {
         fetch(url).then(function (rep) {
@@ -20,12 +24,12 @@ $(document).ready(function () {
             console.log(data);
             data.forEach(function (movie) {
                 result +=
-                    `<div>
+                    `<div class="parent-div">
                     <h5> Movie ID: ${movie.id} </h5>
                     <ul>
-                        <li>Movie name: ${movie.title}</li>
+                        <li>Movie name: ${capString(movie.title)}</li>
                         <li>Movie year: ${movie.year}</li>
-                        <li><img src="${movie.poster}"></li>
+                        <div><img src="${movie.poster}"></div>
                          <button>Edit</button>
                     </ul>
                 </div>`;
