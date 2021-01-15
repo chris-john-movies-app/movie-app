@@ -1,3 +1,7 @@
 .parent-div {
     display: flex;
 }
+
+.card {
+    display:inline-block;
+}
