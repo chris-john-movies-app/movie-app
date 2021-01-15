@@ -23,7 +23,7 @@ $(document).ready(function () {
             console.log(data);
             data.forEach(function (movie) {
                 result += `
-<div class="card col-md-12" style="width: 18rem;">
+<div class="card">
   <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
   <div class="card-body">
     <h3 class="card-title">${capString(movie.title)}</h3>
@@ -45,9 +45,9 @@ $(document).ready(function () {
     const btn = document.querySelector('button');
     const title = document.querySelector('input[name=title]');
     const n = document.querySelector('input[name=rating]');
-    //lister.addEventListener("click", getter);
+    // lister.addEventListener("click", getter);
     // add to movies
-    //btn.addEventListener('click', adder);
+    btn.addEventListener('click', adder);
 
 
     // add to movies function
@@ -87,13 +87,13 @@ $(document).ready(function () {
             let result = `<h2> APP</h2>`;
             data.forEach(function (movie, index) {
                 let div = document.createElement('div');
-                div.innerHTML = `${movie.id}<input type="text" value="${movie.title}"`;
+                div.innerHTML = `${movie.title}<input type="text" value="${movie.title}"`;
                 div.innerHTML += `<input type="text" value="${movie.rating}"><button>Update</button>`
                 div.addEventListener('click', function () {
                     let temps = div.querySelectorAll('input');
                     let updater = div.querySelector('button');
                     updater.addEventListener('click', function () {
-                        updateData(movie.id, temps[0].value, temps[1].value);
+                        updateData(movie.title, temps[0].value, temps[1].value);
                     });
                 });
                 message.appendChild(div);

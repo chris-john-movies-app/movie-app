@@ -1,7 +1,9 @@
-.parent-div {
-    display: flex;
+.card {
+    display:flex;
+    justify-content: space-evenly;
+    margin-left: 5%;
 }
 
-.card {
-    display:inline-block;
+.navbar {
+    margin-left: auto;
 }
