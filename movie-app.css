@@ -1,9 +1,18 @@
-.card {
-    display:flex;
-    justify-content: space-evenly;
-    margin-left: 5%;
-}
+/*.card {*/
+/*    display:flex;*/
+/*    justify-content: space-evenly;*/
+/*    margin-left: 5%;*/
+/*}*/
 
 .navbar {
     margin-left: auto;
 }
+
+.add-btn {
+    float: right;
+    margin-right: 50px;
+}
+
+.movie-body {
+     /*margin-left: 10px;*/
+ }
