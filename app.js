@@ -22,27 +22,34 @@ $(document).ready(function () {
             let result = `<h2>Movie APP</h2>`;
             console.log(data);
             data.forEach(function (movie) {
+
                 result += `
-<div class="card">
-  <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
-  <div class="card-body">
-    <h3 class="card-title">${capString(movie.title)}</h3>
-    <h5 class="card-title">${movie.year}</h5>
-    <h6 class="card-title">${movie.rating}</h6>
-    <p class="card-text">${movie.plot}</p>
-    <a href="#" class="btn btn-primary">Edit</a>
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-sm-6"><br>
+        <img class="card-img-top" src="${movie.poster}" alt="Card image cap">
+    </div>
+    
+    <div class="col-6 col-sm-6 movie-body">
+        <div class="card-body">
+            <h3 class="card-title">${capString(movie.title)}</h3>
+            <h5 class="card-title">${movie.year}</h5>
+            <h6 class="card-title">${movie.rating}</h6>
+            <p class="card-text">${movie.plot}</p>
+            <a href="#" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
   </div>
 </div>`
                 console.log(movie.title);
             });
-            result += ``
+            //         result += ``
             document.getElementById('movieResult').innerHTML = result;
         });
     }
 
-
     //******** ADD TO MOVIE LIST ***********//
-    const btn = document.querySelector('button');
+    const btn = document.querySelector('button'); // NOTE: may need to change button to class later
     const title = document.querySelector('input[name=title]');
     const n = document.querySelector('input[name=rating]');
     // lister.addEventListener("click", getter);
@@ -51,10 +58,12 @@ $(document).ready(function () {
 
 
     // add to movies function
+
+    // needs movie obj perameter
     function adder() {
         fetch('https://shorthaired-alluring-hope.glitch.me/movies', {
             method: 'POST'
-            , body: JSON.stringify({
+            , body: JSON.stringify({ // replace with movie obj perameter
                 title: title.value
                 , rating: n.value
             })
@@ -64,13 +73,14 @@ $(document).ready(function () {
         }).then(function (res) {
             return res.text();
         }).then(function (data) {
+            fetchData(); // re-fetch data to render the new list of movies with added movie
             console.log(data);
         })
     }
 
-    //******** DELETE MOVIE ***********//
+    // ******** DELETE MOVIE ***********//
     //     function remove() {
-    //         fetch('https://codeup-json-server.glitch.me/movies', {
+    //         fetch('https://shorthaired-alluring-hope.glitch.me/movies', {
     //             method: 'DELETE'
     //         }).then(function (res) {
     //             return res.text();
@@ -105,5 +115,3 @@ $(document).ready(function () {
         console.log(title, rating);
     }
 });
-
-
