@@ -1,18 +1,39 @@
-/*.card {*/
-/*    display:flex;*/
-/*    justify-content: space-evenly;*/
-/*    margin-left: 5%;*/
-/*}*/
-
-.navbar {
-    margin-left: auto;
+body {
+    background-color: black;
 }
 
+/*ADD BUTTONS*/
 .add-btn {
     float: right;
     margin-right: 50px;
 }
 
-.movie-body {
-     /*margin-left: 10px;*/
- }
+/*NAVBAR TITLE*/
+#nav-title {
+    margin-top: 45px;
+    margin-left: 10px;
+    font-size: 50px;
+}
+
+.navbar {
+    margin-left: auto;
+    color: cornflowerblue;
+}
+
+/*CARDS*/
+.card-title {
+    color: cornflowerblue;
+}
+
+/*LOADING DISPLAY*/
+.boxLoading {
+    color: cornflowerblue;
+    font-size: 80px;
+    margin-top: 30px;
+}
+
+/*ADD INPUTS*/
+.input-field {
+    background-color: #FFFAFA;
+    font-weight: bold;
+}
