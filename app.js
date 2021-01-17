@@ -11,10 +11,12 @@ $(document).ready(function () {
         fetchData()
 
     }, 1000);
+
     // Capitalize Movie Title //
     function capString(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
     }
+
     // FETCH DATA //
     function fetchData() {
         document.getElementById('movieResult').innerHTML = `<div></div>`
@@ -38,8 +40,7 @@ $(document).ready(function () {
             <h5 class="card-title">${movie.year}</h5>
             <h6 class="card-title">${movie.rating}</h6>
             <p class="card-title">${movie.plot}</p>
-            <a href="#" class="btn btn-primary" id="edit-post">Edit</a>
-            <a href="#" class="btn 'btn-primary" id="delete-post">Delete</a>
+           
         </div>
     </div>
   </div>
@@ -47,30 +48,30 @@ $(document).ready(function () {
                 movieItem.innerHTML = result
                 document.getElementById('movieResult').appendChild(movieItem)
 
-               // deleteID = movie.id
+                // deleteID = movie.id
 
                 let deleteButton = document.createElement('button');
                 let editButton = document.createElement('button');
 
-                deleteButton.innerText = "pizza"
-                editButton.innerText = "edit pizza"
+                deleteButton.innerText = "delete"
+                editButton.innerText = "edit"
 
-                deleteButton.addEventListener("click", function(){
-                      remove(movie.id)
+                deleteButton.addEventListener("click", function () {
+                    remove(movie.id)
                 })
-                editButton.addEventListener("click", function(){
+                editButton.addEventListener("click", function () {
                     edit(movie, movieItem)
                 })
 
                 document.getElementById('movieResult').appendChild(deleteButton)
                 document.getElementById('movieResult').appendChild(editButton)
 
-               // movie = result;
-               // document.getElementById('movieResult').innerHTML= result;
-              //  document.getElementById('movieResult').appendChild()
+                // movie = result;
+                // document.getElementById('movieResult').innerHTML= result;
+                //  document.getElementById('movieResult').appendChild()
                 console.log(movie.title);
             });
-          //  const deleteButton = document.getElementById('delete-post');
+            //  const deleteButton = document.getElementById('delete-post');
             //         result += ``
             // delete button
         });
@@ -114,10 +115,10 @@ $(document).ready(function () {
 
     function remove(id) {
         console.log(id)
-        fetch('https://shorthaired-alluring-hope.glitch.me/movies/'+id, {
+        fetch('https://shorthaired-alluring-hope.glitch.me/movies/' + id, {
             method: 'DELETE'
         }).then(function (res) {
-        fetchData();
+            fetchData();
         })
     }
 
@@ -127,12 +128,12 @@ $(document).ready(function () {
         let saveButton = document.createElement('button');
         saveButton.innerText = "save pizza"
 
-        saveButton.addEventListener("click", function(){
+        saveButton.addEventListener("click", function () {
             const editTitle = document.querySelector('input[name=editTitle]');
             const editYear = document.querySelector('input[name=editYear]');
             const editRating = document.querySelector('input[name=editRating]');
-           const editPlot = document.querySelector('input[name=editPlot]');
-            fetch('https://shorthaired-alluring-hope.glitch.me/movies/'+movie.id, {
+            const editPlot = document.querySelector('input[name=editPlot]');
+            fetch('https://shorthaired-alluring-hope.glitch.me/movies/' + movie.id, {
                 method: 'PUT'
                 , body: JSON.stringify({ // replace with movie obj perameter
                     title: editTitle.value
