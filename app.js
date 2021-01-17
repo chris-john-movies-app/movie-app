@@ -7,8 +7,10 @@ $(document).ready(function () {
     //******** LOADING DISPLAY ***********//
     let loader = `<div class="boxLoading text-center">Loading...</div>`;
     document.getElementById('movieResult').innerHTML = loader;
-    let data = fetchData()
+    setTimeout(function () {
+        fetchData()
 
+    }, 1000);
     // Capitalize Movie Title //
     function capString(word) {
         return word.charAt(0).toUpperCase() + word.slice(1);
@@ -16,11 +18,6 @@ $(document).ready(function () {
     // FETCH DATA //
     function fetchData() {
         document.getElementById('movieResult').innerHTML = `<div></div>`
-
-
-        let movieTitle = document.createElement('div');
-
-        let deleteID;
         fetch(url).then(function (rep) {
             return rep.json()
         }).then(function (data) {
@@ -52,14 +49,21 @@ $(document).ready(function () {
 
                // deleteID = movie.id
 
-                movieTitle.innerText = movie.title;
                 let deleteButton = document.createElement('button');
+                let editButton = document.createElement('button');
 
                 deleteButton.innerText = "pizza"
+                editButton.innerText = "edit pizza"
+
                 deleteButton.addEventListener("click", function(){
                       remove(movie.id)
                 })
+                editButton.addEventListener("click", function(){
+                    edit(movie, movieItem)
+                })
+
                 document.getElementById('movieResult').appendChild(deleteButton)
+                document.getElementById('movieResult').appendChild(editButton)
 
 
 
@@ -176,7 +180,6 @@ $(document).ready(function () {
     // ******** DELETE MOVIE ***********//
 
     function remove(id) {
-        console.log(data)
         console.log(id)
         fetch('https://shorthaired-alluring-hope.glitch.me/movies/'+id, {
             method: 'DELETE'
@@ -185,7 +188,46 @@ $(document).ready(function () {
         })
     }
 
+// ******** EDIT MOVIE ***********//
 
+    function edit(movie, movieItem) {
+        let saveButton = document.createElement('button');
+        saveButton.innerText = "save pizza"
+
+        saveButton.addEventListener("click", function(){
+            const editTitle = document.querySelector('input[name=editTitle]');
+            const editYear = document.querySelector('input[name=editYear]');
+            const editRating = document.querySelector('input[name=editRating]');
+           const editPlot = document.querySelector('input[name=editPlot]');
+            fetch('https://shorthaired-alluring-hope.glitch.me/movies/'+movie.id, {
+                method: 'PUT'
+                , body: JSON.stringify({ // replace with movie obj perameter
+                    title: editTitle.value
+                    , year: editYear.value
+                    , rating: editRating.value
+                    , plot: editPlot.value
+                })
+                , headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            }).then(function (res) {
+
+                fetchData();
+            })
+        })
+
+        let result = `<span >
+            <h5>Title:</h5> <input class="input-field" name="editTitle" value="${movie.title}"><br>
+            <h5>Year:</h5> <input class="input-field"  name="editYear" value="${movie.year}"><br>
+            <h5>Rating:</h5> <input class="input-field" name="editRating" value="${movie.rating}"><br>
+            <h5>Plot:</h5> <input name="editPlot" value="${movie.plot}"> <br>
+        </span>`
+        movieItem.innerHTML = result
+        movieItem.appendChild(saveButton)
+
+        //document.getElementById('movieResult').appendChild(test)
+    }
 
 
 
