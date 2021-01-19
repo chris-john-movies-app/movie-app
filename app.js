@@ -42,10 +42,11 @@ $(document).ready(function () {
 </div>`
                 movieItem.innerHTML = result
                 document.getElementById('movieResult').appendChild(movieItem)
-
                 // deleteID = movie.id
                 let deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-btn', 'btn', 'btn-danger')
                 let editButton = document.createElement('button');
+                editButton.classList.add('edit-btn', 'btn', 'btn-primary')
                 deleteButton.innerText = "delete"
                 editButton.innerText = "edit"
                 deleteButton.addEventListener("click", function () {

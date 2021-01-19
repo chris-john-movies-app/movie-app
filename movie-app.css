@@ -38,6 +38,9 @@ body {
     font-weight: bold;
 }
 
-button {
-    background-color: cornflowerblue;
+.delete-btn, .edit-btn {
+    color: white;
+    margin: 10px 0.4em 20px 10px;
+    align-content: center;
+
 }
